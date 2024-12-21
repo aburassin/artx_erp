@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:transaction_uid",
+ "creation": "2024-12-17 17:07:28.011189",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_uid",
+  "status",
+  "column_break_vzpj",
+  "project",
+  "project_owner_type",
+  "section_break_asma",
+  "transaction_owner",
+  "column_break_gyou",
+  "cost",
+  "column_break_gmeu",
+  "company_fees"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction_uid",
+   "fieldtype": "Data",
+   "label": "Transaction UID",
+   "unique": 1
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "column_break_vzpj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nAccept\nReject"
+  },
+  {
+   "fieldname": "cost",
+   "fieldtype": "Currency",
+   "label": "Cost"
+  },
+  {
+   "fieldname": "company_fees",
+   "fieldtype": "Currency",
+   "label": "Company Fees"
+  },
+  {
+   "fieldname": "section_break_asma",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_gmeu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project.project_owner_type",
+   "fieldname": "project_owner_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Project Owner Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_owner",
+   "fieldtype": "Data",
+   "label": "Transaction Owner"
+  },
+  {
+   "fieldname": "column_break_gyou",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-17 17:36:18.182158",
+ "modified_by": "Administrator",
+ "module": "Art Zone",
+ "name": "Transaction",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -87,6 +87,8 @@ app_license = "mit"
 
 # Uninstallation
 # ------------
+# Migration
+# after_migrate = ["art_zone.migrate.create_custom_fields_for_art_zone"]
 
 # before_uninstall = "art_zone.uninstall.before_uninstall"
 # after_uninstall = "art_zone.uninstall.after_uninstall"
@@ -242,3 +244,15 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+# Custom Field
+fixtures = [
+    {"dt": "Custom Field", "filters": [
+        [
+            "dt", "in", [
+                "Project",
+            ]
+        ]
+    ]},
+
+]
