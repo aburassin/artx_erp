@@ -1,0 +1,13 @@
+[
+ {
+  "dimension_defaults": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Accounting Dimension",
+  "document_type": "Transaction",
+  "fieldname": "transaction",
+  "label": "Transaction",
+  "modified": "2024-12-21 18:05:12.619397",
+  "name": "Transaction"
+ }
+]

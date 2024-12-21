@@ -246,13 +246,15 @@ app_license = "mit"
 
 
 # Custom Field
-fixtures = [
-    {"dt": "Custom Field", "filters": [
-        [
-            "dt", "in", [
-                "Project",
-            ]
-        ]
-    ]},
+# fixtures = [
+#     {
+#         "dt": "Custom Field", 
+#         "filters": []
+#     },
+#     {
+#         "dt": "Accounting Dimension",
+#         "filters": []
+#     },
 
-]
+
+# ]
