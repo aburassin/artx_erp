@@ -6,17 +6,23 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "transaction_uid",
-  "status",
-  "column_break_vzpj",
   "project",
-  "project_owner_type",
+  "status",
+  "transaction_uid",
+  "column_break_gift",
+  "transaction_complete_date",
   "section_break_asma",
   "transaction_owner",
   "column_break_gyou",
   "cost",
   "column_break_gmeu",
-  "company_fees"
+  "company_fees",
+  "section_break_saix",
+  "amended_from",
+  "reference_tab",
+  "purchase_order",
+  "column_break_huvb",
+  "sales_invoice"
  ],
  "fields": [
   {
@@ -30,10 +36,6 @@
    "fieldtype": "Link",
    "label": "Project",
    "options": "Project"
-  },
-  {
-   "fieldname": "column_break_vzpj",
-   "fieldtype": "Column Break"
   },
   {
    "default": "Pending",
@@ -61,14 +63,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "project.project_owner_type",
-   "fieldname": "project_owner_type",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Project Owner Type",
-   "read_only": 1
-  },
-  {
    "fieldname": "transaction_owner",
    "fieldtype": "Data",
    "label": "Transaction Owner"
@@ -76,11 +70,59 @@
   {
    "fieldname": "column_break_gyou",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Transaction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_saix",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reference_tab",
+   "fieldtype": "Tab Break",
+   "label": "Reference "
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order",
+   "options": "Purchase Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_huvb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gift",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_complete_date",
+   "fieldtype": "Datetime",
+   "label": "Transaction Complete Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-12-17 17:36:18.182158",
+ "modified": "2024-12-22 15:37:21.000793",
  "modified_by": "Administrator",
  "module": "Art Zone",
  "name": "Transaction",
@@ -102,5 +144,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

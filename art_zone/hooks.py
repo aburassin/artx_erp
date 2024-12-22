@@ -83,12 +83,12 @@ app_license = "mit"
 # ------------
 
 # before_install = "art_zone.install.before_install"
-# after_install = "art_zone.install.after_install"
+after_install = "art_zone.after_install.after_install"
 
 # Uninstallation
 # ------------
 # Migration
-# after_migrate = ["art_zone.migrate.create_custom_fields_for_art_zone"]
+# after_migrate = ["art_zone.after_install.after_install"]
 
 # before_uninstall = "art_zone.uninstall.before_uninstall"
 # after_uninstall = "art_zone.uninstall.after_uninstall"
@@ -255,6 +255,4 @@ app_license = "mit"
 #         "dt": "Accounting Dimension",
 #         "filters": []
 #     },
-
-
 # ]

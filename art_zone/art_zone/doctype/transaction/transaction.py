@@ -1,43 +1,128 @@
-# Copyright (c) 2024, abdelwahab and contributors
-# For license information, please see license.txt
-
 import frappe
 from frappe.model.document import Document
 from frappe.utils import now
 
 class Transaction(Document):
 
-	def before_save(self):
-		if self.status == "Accept":
-			self.update_project_status()
-			self.create_purchase_order()
+    def on_submit(self):
+        self.set_transaction_complete_date()
+        if self.status == "Accept":
+            self.process_acceptance()
 
-	def update_project_status(self):
-		project = self.get_ref_project()
-		project.status = "Completed"
-		project.save()
-	
-	def create_purchase_order(self):
-		ref_project = self.get_ref_project()
-		if not ref_project or ref_project.project_owner_type != "Supplier":
-			frappe.throw("Invalid project or owner type is not Supplier.")
+    def on_cancel(self):
+        if self.status == "Accept":
+            self.reverse_acceptance()
 
-		po = frappe.new_doc("Purchase Order")
-		po.supplier = self.transaction_owner
-		po.project = self.project
-		po.schedule_date = now()
-		for project_item in ref_project.items:
-			po_item = po.append("items", {})
-			po_item.item_code = project_item.item
-			po_item.qty = project_item.quantity
-			po_item.rate = project_item.price
-			po_item.amount = project_item.quantity * project_item.price
-			po_item.description = project_item.get("description", "No description provided")
+    def set_transaction_complete_date(self):
+        self.transaction_complete_date = now()
 
-		po.save()
-		frappe.db.commit()
-		
-		return po
+    def process_acceptance(self):
+        self.update_project_status()
+        self.create_purchase_order()
+        self.create_sales_invoice()
 
-	def get_ref_project(self):
-		return frappe.get_doc("Project", self.project)
+    def reverse_acceptance(self):
+        self.reverse_project_status()
+        self.delete_purchase_order()
+        self.delete_sales_invoice()
+
+    def update_project_status(self):
+        project = self.get_ref_project()
+        if not project:
+            frappe.throw("Referenced project not found.")
+        project.estimated_costing = self.cost+ self.company_fees
+        project.status = "Completed"
+        self.add_transaction_row_in_project(project)
+        project.save()
+
+    def reverse_project_status(self):
+        project = self.get_ref_project()
+        if not project:
+            frappe.throw("Referenced project not found.")
+        project.estimated_costing = 0.0	
+        project.status = "Open"
+        self.remove_transaction_row_from_project(project)
+        project.save()
+
+    def add_transaction_row_in_project(self, project):
+        project.append("accepted_transaction_table", {
+            "transaction": self.name,
+            "cost": self.cost,
+            "transaction_owner": self.transaction_owner
+        })
+
+    def remove_transaction_row_from_project(self, project):
+        for row in project.accepted_transaction_table:
+            if row.transaction == self.name:
+                project.remove(row)
+                break
+
+    def create_purchase_order(self):
+        ref_project = self.get_ref_project()
+        if not ref_project or ref_project.project_owner_type != "Customer":
+            frappe.throw("Invalid project or owner type is not Customer.")
+
+        po = frappe.new_doc("Purchase Order")
+        po.supplier = self.transaction_owner
+        po.project = self.project
+        po.schedule_date = now()
+
+        for project_item in ref_project.items:
+            po_item = po.append("items", {})
+            po_item.item_code = project_item.item
+            po_item.qty = project_item.qty or 1
+            po_item.rate = self.cost
+            po_item.amount = self.cost
+            po_item.description = project_item.get("description", f"Transaction: {self.name}")
+
+        po.save()
+        frappe.db.commit()
+        
+        self.purchase_order = po.name
+        return po
+
+    def delete_purchase_order(self):
+        if self.purchase_order:
+            po = frappe.get_doc("Purchase Order", self.purchase_order)
+            if po:
+                po.cancel()
+                po.delete()
+                frappe.db.commit()
+
+    def create_sales_invoice(self):
+        ref_project = self.get_ref_project()
+        if not ref_project or ref_project.project_owner_type != "Customer":
+            frappe.throw("Invalid project or owner type is not Customer.")
+
+        si = frappe.new_doc("Sales Invoice")
+        si.customer = ref_project.project_owner_c
+        si.project = self.project
+        si.posting_date = now()
+
+        for project_item in ref_project.items:
+            si_item = si.append("items", {})
+            si_item.item_code = project_item.item
+            si_item.qty = project_item.qty or 1
+            si_item.rate = self.cost + self.company_fees
+            si_item.amount = si_item.rate
+            si_item.description = project_item.get("description", " ")
+
+        si.save()
+        frappe.db.commit()
+        
+        self.sales_invoice = si.name
+        return si
+
+    def delete_sales_invoice(self):
+        if self.sales_invoice:
+            si = frappe.get_doc("Sales Invoice", self.sales_invoice)
+            if si:
+                si.cancel()
+                si.delete()
+                frappe.db.commit()
+
+    def get_ref_project(self):
+        project = frappe.get_doc("Project", self.project)
+        if not project:
+            frappe.throw("Referenced project not found.")
+        return project

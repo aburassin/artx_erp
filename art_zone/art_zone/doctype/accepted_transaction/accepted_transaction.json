@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-12-22 14:43:40.008979",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction",
+  "transaction_owner",
+  "cost",
+  "company_fees"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Transaction",
+   "options": "Transaction",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "transaction.cost",
+   "fieldname": "cost",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Cost",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "transaction.transaction_owner",
+   "fieldname": "transaction_owner",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Transaction Owner",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "transaction.company_fees",
+   "fieldname": "company_fees",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Company Fees",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-22 15:41:04.690626",
+ "modified_by": "Administrator",
+ "module": "Art Zone",
+ "name": "Accepted Transaction",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

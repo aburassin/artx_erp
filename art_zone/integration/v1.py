@@ -10,6 +10,8 @@ from .apis.items.create_item import (
 )
 from .apis.supplier.supplier_methods import (create_supplier, toggle_supplier_status)
 from .apis.customer.customer_methods import (create_customer , toggle_customer_status)
+from .apis.project.project import (
+    create_new_project,update_old_project,update_old_project_items,toggle_old_project_status)
 @frappe.whitelist(allow_guest=True , methods=["POST"])
 def login(user , password):
     get_user_token (user , password)
@@ -49,3 +51,19 @@ def create_client(**kwargs):
 @frappe.whitelist(methods=["PUT"])
 def toggle_client_status(**kwargs):
     return toggle_customer_status(**kwargs)
+
+@frappe.whitelist(methods=["POST"])
+def create_project(**kwargs):
+    return create_new_project(**kwargs)
+
+@frappe.whitelist(methods=["PUT"])
+def update_project(**kwargs):
+    return update_old_project(**kwargs)
+
+@frappe.whitelist(methods=["PUT"]) 
+def update_project_items(**kwargs):
+    return update_old_project_items(**kwargs)
+
+@frappe.whitelist(methods=["PUT"])
+def toggle_project_status(**kwargs):
+    return toggle_old_project_status(**kwargs)

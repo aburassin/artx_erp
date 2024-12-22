@@ -1,5 +1,12 @@
+
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 import frappe
+
+
+def after_install():
+    create_custom_fields_for_art_zone()
+    create_account_dimension()
+    frappe.db.commit()
 
 def create_custom_fields_for_art_zone():
     custom_fields = {
@@ -64,14 +71,6 @@ def create_custom_fields_for_art_zone():
                 "depends_on": "eval:doc.project_owner_type == 'Supplier'"
             },
             {
-				"fieldname": "accepted_transaction",
-				"fieldtype": "Link",
-				"label": "Accepted Transaction",
-				"insert_after": "department",
-				"options": "Transaction",
-				"read_only": 1
-			},
-            {
                 "fieldname": "items_tab",
                 "fieldtype": "Tab Break",
                 "label": "Items",
@@ -83,6 +82,20 @@ def create_custom_fields_for_art_zone():
                 "label": "Items",
                 "options": "Project Item",
                 "insert_after": "items_tab",
+            },
+            {
+                "fieldname": "accepted_transaction_section",
+                "fieldtype": "Section Break",
+                "label": "Accepted Transaction",
+                "insert_after": "items",
+            },
+            {
+                "fieldname": "accepted_transaction_table",
+                "fieldtype": "Table",
+                "label": "Accepted Transaction",
+                "options": "Accepted Transaction",
+                "insert_after": "Section Break",
+                "read_only": 1
             }
         ]
     }
@@ -92,3 +105,13 @@ def create_custom_fields_for_art_zone():
     frappe.db.commit()
 
     print("Custom Fields for Supplier and Project created successfully.")
+
+
+
+def create_account_dimension():
+    if not frappe.db.exists("Account Dimension", "Transaction"):
+        account_dimension = frappe.new_doc("Account Dimension")
+        account_dimension.dimension = "Transaction"
+        account_dimension.save()
+        frappe.db.commit()
+        print("Account Dimension for Project created successfully.")

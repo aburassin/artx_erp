@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "item",
-  "quantity",
+  "qty",
   "price"
  ],
  "fields": [
@@ -19,22 +19,22 @@
    "options": "Item"
   },
   {
-   "fieldname": "quantity",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Quantity"
-  },
-  {
    "fieldname": "price",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Price"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Quantity"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-21 18:00:29.332836",
+ "modified": "2024-12-22 15:24:07.753712",
  "modified_by": "Administrator",
  "module": "Art Zone",
  "name": "Project Item",
