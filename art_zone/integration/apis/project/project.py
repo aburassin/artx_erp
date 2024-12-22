@@ -37,19 +37,22 @@ def update_old_project(**kwargs):
     Update an existing project's status and other details.
     """
     data = kwargs
-    project = frappe.get_doc("Project", data.get("name"))
-    if "status" in data:
-        project.status = data.get("status")
-    if "notes" in data:
-        project.notes = data.get("notes")
+    status = data.get("status")
+    notes = data.get("notes")
+    project_uid = data.get("project_uid")
+    project = frappe.get_doc("Project", {"project_uid": project_uid})
+    if status:
+        project.status = status
+    if notes:
+        project.notes = notes
     project.save()
     return project
 
-def update_old_project_items(project_name, items):
+def update_old_project_items(project_uid, items):
     """
     Update items in an existing project.
     """
-    project = frappe.get_doc("Project", project_name)
+    project = frappe.get_doc("Project", {"project_uid": project_uid})
     project.items = []
 
     for item in items:
@@ -62,11 +65,11 @@ def update_old_project_items(project_name, items):
     project.save()
     return project
 
-def toggle_old_project_status(project_name, is_active):
+def toggle_old_project_status(project_uid, is_active):
     """
     Toggle the active status of a project.
     """
-    project = frappe.get_doc("Project", project_name)
+    project = frappe.get_doc("Project", {"project_uid": project_uid})
     project.is_active = 1 if is_active else 0
     project.save()
     return project
