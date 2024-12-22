@@ -70,6 +70,6 @@ def toggle_old_project_status(project_uid, is_active):
     Toggle the active status of a project.
     """
     project = frappe.get_doc("Project", {"project_uid": project_uid})
-    project.is_active = 1 if is_active else 0
+    project.is_active = is_active or "Yes"
     project.save()
     return project

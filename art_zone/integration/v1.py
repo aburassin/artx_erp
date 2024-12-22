@@ -62,9 +62,9 @@ def update_project(**kwargs):
 
 @frappe.whitelist(methods=["PUT"]) 
 def update_project_items(**kwargs):
-    project_name = kwargs.get("project_uid")
+    project_uid = kwargs.get("project_uid")
     items = kwargs.get("items")
-    return update_old_project_items(project_name, items)
+    return update_old_project_items(project_uid, items)
 
 @frappe.whitelist(methods=["PUT"])
 def toggle_project_status(**kwargs):
