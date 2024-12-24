@@ -83,7 +83,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "art_zone.install.before_install"
-after_install = "art_zone.after_install.after_install"
+# after_install = "art_zone.after_install.after_install"
 
 # Uninstallation
 # ------------
@@ -99,7 +99,7 @@ after_install = "art_zone.after_install.after_install"
 # Name of the app being installed is passed as an argument
 
 # before_app_install = "art_zone.utils.before_app_install"
-# after_app_install = "art_zone.utils.after_app_install"
+after_app_install = "art_zone.after_install.after_install"
 
 # Integration Cleanup
 # -------------------
