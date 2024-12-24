@@ -1,9 +1,8 @@
-
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 import frappe
 
 
-def after_install():
+def after_install(name=None):
     create_custom_fields_for_art_zone()
     create_account_dimension()
     frappe.db.commit()
@@ -105,7 +104,6 @@ def create_custom_fields_for_art_zone():
     frappe.db.commit()
 
     print("Custom Fields for Supplier and Project created successfully.")
-
 
 
 def create_account_dimension():
