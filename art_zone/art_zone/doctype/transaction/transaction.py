@@ -32,7 +32,7 @@ class Transaction(Document):
             frappe.throw("Referenced project not found.")
         project.estimated_costing = self.cost+ self.company_fees
         project.status = "Completed"
-        self.add_transaction_row_in_project(project)
+        # self.add_transaction_row_in_project(project)
         project.save()
 
     def reverse_project_status(self):
@@ -41,7 +41,7 @@ class Transaction(Document):
             frappe.throw("Referenced project not found.")
         project.estimated_costing = 0.0	
         project.status = "Open"
-        self.remove_transaction_row_from_project(project)
+        # self.remove_transaction_row_from_project(project)
         project.save()
 
     def add_transaction_row_in_project(self, project):
