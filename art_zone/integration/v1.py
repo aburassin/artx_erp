@@ -100,17 +100,17 @@ def update_cost_and_fees(**kwargs):
 
 @frappe.whitelist(methods=["PUT"])  
 def update_transaction_status(**kwargs):
-    return tr_update_transaction_status(**kwargs)
+    return tr_update_transaction_status(transaction_uid=kwargs.get("transaction_uid"), status=kwargs.get("status"))
 
 @frappe.whitelist(methods=["PUT"])
 def submit_transaction(**kwargs):
-    return tr_submit_transaction(**kwargs)
+    return tr_submit_transaction(transaction_uid=kwargs.get("transaction_uid"))
 
 @frappe.whitelist(methods=["PUT"])
 def cancel_transaction(**kwargs):
-    return tr_cancel_transaction(**kwargs)
+    return tr_cancel_transaction(transaction_uid=kwargs.get("transaction_uid"))
 
 @frappe.whitelist(methods=["PUT"])
 def update_project(**kwargs):
-    return tr_update_project(**kwargs)
+    return tr_update_project(transaction_uid=kwargs.get("transaction_uid"), project_uid=kwargs.get("project_uid"))
 
