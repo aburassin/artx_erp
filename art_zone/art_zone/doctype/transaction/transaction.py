@@ -18,30 +18,30 @@ class Transaction(Document):
 
     def process_acceptance(self):
         self.update_project_status()
-        self.create_purchase_order()
+        self.create_purchase_invoice()
         self.create_sales_invoice()
 
     def reverse_acceptance(self):
         self.reverse_project_status()
-        self.delete_purchase_order()
+        self.delete_purchase_invoice()
         self.delete_sales_invoice()
 
     def update_project_status(self):
         project = self.get_ref_project()
         if not project:
             frappe.throw("Referenced project not found.")
-        project.estimated_costing = self.cost+ self.company_fees
+        project.estimated_costing = self.cost + self.company_fees
         project.status = "Completed"
-        # self.add_transaction_row_in_project(project)
+        self.add_transaction_row_in_project(project)
         project.save()
 
     def reverse_project_status(self):
         project = self.get_ref_project()
         if not project:
             frappe.throw("Referenced project not found.")
-        project.estimated_costing = 0.0	
+        project.estimated_costing = 0.0
         project.status = "Open"
-        # self.remove_transaction_row_from_project(project)
+        self.remove_transaction_row_from_project(project)
         project.save()
 
     def add_transaction_row_in_project(self, project):
@@ -57,36 +57,36 @@ class Transaction(Document):
                 project.remove(row)
                 break
 
-    def create_purchase_order(self):
+    def create_purchase_invoice(self):
         ref_project = self.get_ref_project()
         if not ref_project or ref_project.project_owner_type != "Customer":
             frappe.throw("Invalid project or owner type is not Customer.")
 
-        po = frappe.new_doc("Purchase Order")
-        po.supplier = self.transaction_owner
-        po.project = self.project
-        po.schedule_date = now()
+        pi = frappe.new_doc("Purchase Invoice")
+        pi.supplier = self.transaction_owner
+        pi.project = self.project
+        pi.posting_date = now()
 
         for project_item in ref_project.items:
-            po_item = po.append("items", {})
-            po_item.item_code = project_item.item
-            po_item.qty = project_item.qty or 1
-            po_item.rate = self.cost
-            po_item.amount = self.cost
-            po_item.description = project_item.get("description", f"Transaction: {self.name}")
+            pi_item = pi.append("items", {})
+            pi_item.item_code = project_item.item
+            pi_item.qty =  1
+            pi_item.rate = self.cost
+            pi_item.amount = self.cost
+            pi_item.description = project_item.get("description", f"Transaction: {self.name}")
 
-        po.save()
+        pi.save()
         frappe.db.commit()
-        
-        self.purchase_order = po.name
-        return po
 
-    def delete_purchase_order(self):
-        if self.purchase_order:
-            po = frappe.get_doc("Purchase Order", self.purchase_order)
-            if po:
-                po.cancel()
-                po.delete()
+        self.purchase_invoice = pi.name
+        return pi
+
+    def delete_purchase_invoice(self):
+        if self.purchase_invoice:
+            pi = frappe.get_doc("Purchase Invoice", self.purchase_invoice)
+            if pi:
+                pi.cancel()
+                pi.delete()
                 frappe.db.commit()
 
     def create_sales_invoice(self):
@@ -102,14 +102,14 @@ class Transaction(Document):
         for project_item in ref_project.items:
             si_item = si.append("items", {})
             si_item.item_code = project_item.item
-            si_item.qty = project_item.qty or 1
+            si_item.qty =  1
             si_item.rate = self.cost + self.company_fees
             si_item.amount = si_item.rate
             si_item.description = project_item.get("description", " ")
 
         si.save()
         frappe.db.commit()
-        
+
         self.sales_invoice = si.name
         return si
 
