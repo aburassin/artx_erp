@@ -104,7 +104,7 @@ def update_transaction_status(**kwargs):
 
 @frappe.whitelist(methods=["PUT"])
 def submit_transaction(**kwargs):
-    return tr_submit_transaction(transaction_uid=kwargs.get("transaction_uid"))
+    return tr_submit_transaction(kwargs.get("transaction_uid"))
 
 @frappe.whitelist(methods=["PUT"])
 def cancel_transaction(**kwargs):
