@@ -99,7 +99,7 @@ app_license = "mit"
 # Name of the app being installed is passed as an argument
 
 # before_app_install = "art_zone.utils.before_app_install"
-after_app_install = "art_zone.after_install.after_install"
+after_app_install = "art_zone.after_install.create_custom_fields_for_art_zone"
 
 # Integration Cleanup
 # -------------------

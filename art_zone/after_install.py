@@ -4,7 +4,7 @@ import frappe
 
 def after_install(name=None):
     create_custom_fields_for_art_zone()
-    create_account_dimension()
+    # create_account_dimension()
     frappe.db.commit()
 
 def create_custom_fields_for_art_zone():
