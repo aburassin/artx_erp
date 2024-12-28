@@ -83,7 +83,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "art_zone.install.before_install"
-after_install = ["art_zone.after_install.after_install"]
+# after_install = ["art_zone.after_install.after_install"]
 
 # Uninstallation
 # ------------
