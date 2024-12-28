@@ -45,8 +45,50 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Report",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "General Ledger",
+   "link_count": 0,
+   "link_to": "General Ledger",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "GL Entry",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item-wise Sales Register",
+   "link_count": 0,
+   "link_to": "Item-wise Sales Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Sales Invoice",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item Balance (Simple)",
+   "link_count": 0,
+   "link_to": "Item Balance (Simple)",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Bin",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Project",
-   "link_count": 4,
+   "link_count": 6,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -94,47 +136,25 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Report",
-   "link_count": 3,
+   "label": "Supplier",
+   "link_count": 0,
+   "link_to": "Supplier",
    "link_type": "DocType",
    "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "General Ledger",
-   "link_count": 0,
-   "link_to": "General Ledger",
-   "link_type": "Report",
-   "onboard": 0,
-   "report_ref_doctype": "GL Entry",
    "type": "Link"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Item-wise Sales Register",
+   "label": "Customer",
    "link_count": 0,
-   "link_to": "Item-wise Sales Register",
-   "link_type": "Report",
+   "link_to": "Customer",
+   "link_type": "DocType",
    "onboard": 0,
-   "report_ref_doctype": "Sales Invoice",
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Item Balance (Simple)",
-   "link_count": 0,
-   "link_to": "Item Balance (Simple)",
-   "link_type": "Report",
-   "onboard": 0,
-   "report_ref_doctype": "Bin",
    "type": "Link"
   }
  ],
- "modified": "2024-12-28 13:44:48.665368",
+ "modified": "2024-12-28 13:20:47.749362",
  "modified_by": "Administrator",
  "module": "Art Zone",
  "name": "Art Zone",
