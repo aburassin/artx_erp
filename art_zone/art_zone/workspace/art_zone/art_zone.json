@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"c6LRfjCUfe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Art Zone</span>\",\"col\":12}},{\"id\":\"ZvvEUhpWwW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"BGGpwFAcpo\",\"type\":\"card\",\"data\":{\"card_name\":\"Project\",\"col\":4}},{\"id\":\"bdB8wCl5S_\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts\",\"col\":4}},{\"id\":\"Qu0x0q4eGP\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":4}}]",
+ "content": "[{\"id\":\"c6LRfjCUfe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Art Zone</span>\",\"col\":12}},{\"id\":\"ZvvEUhpWwW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"BGGpwFAcpo\",\"type\":\"card\",\"data\":{\"card_name\":\"Project\",\"col\":4}},{\"id\":\"bdB8wCl5S_\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts\",\"col\":4}},{\"id\":\"Qu0x0q4eGP\",\"type\":\"card\",\"data\":{\"card_name\":\"Report\",\"col\":4}},{\"id\":\"4tzgynhxvj\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"X4M7GGKCNP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Art Zone B2b\",\"col\":3}}]",
  "creation": "2024-12-28 13:41:59.437467",
  "custom_blocks": [],
  "docstatus": 0,
@@ -154,7 +154,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-12-28 13:20:47.749362",
+ "modified": "2024-12-30 10:08:55.022673",
  "modified_by": "Administrator",
  "module": "Art Zone",
  "name": "Art Zone",
@@ -165,6 +165,15 @@
  "quick_lists": [],
  "roles": [],
  "sequence_id": 1.0,
- "shortcuts": [],
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Art Zone B2b",
+   "link_to": "Art Zone B2B",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
  "title": "Art Zone"
 }
