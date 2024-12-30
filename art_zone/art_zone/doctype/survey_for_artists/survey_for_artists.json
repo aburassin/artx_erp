@@ -1,0 +1,332 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-12-30 14:47:55.100705",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "phone_number",
+  "city",
+  "main_specialty_section",
+  "photographer",
+  "makeup_artist",
+  "hairdresser",
+  "model",
+  "bridesmaid",
+  "other",
+  "experience_in_the_field_in_years_section",
+  "less_than_a_year",
+  "1_to_3_years",
+  "4_to_6_years",
+  "more_than_6_years",
+  "do_you_deal_with_fixed_or_negotiable_prices_section",
+  "fixed_prices",
+  "negotiable",
+  "service_details_and_prices_tab",
+  "subspecialty",
+  "what_is_the_average_price_for_your_service_section",
+  "less_than_500_sar",
+  "500_to_1000_sar",
+  "1000_to_2000_sar",
+  "more_than_2000_sar",
+  "other_service_price",
+  "do_prices_vary_based_on_client_type_personalbusiness_section",
+  "yes",
+  "no",
+  "other_customer_type",
+  "app_experience_tab",
+  "what_features_do_you_value_most_in_the_app_section",
+  "appointment_management",
+  "order_management",
+  "customer_communication",
+  "view_portfolio",
+  "other_app_experiencec",
+  "what_features_do_you_find_lacking_or_need_improvement_section",
+  "need_to_improve",
+  "do_you_find_the_app_interface_easy_to_use_section",
+  "yes_east_to_use",
+  "no_east_to_use",
+  "what_did_you_like_most_about_the_app_section",
+  "data_yebz",
+  "what_is_the_most_annoying_in_the_app_section",
+  "most_annoying_in_app"
+ ],
+ "fields": [
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "default": "0",
+   "fieldname": "photographer",
+   "fieldtype": "Check",
+   "label": "Photographer"
+  },
+  {
+   "default": "0",
+   "fieldname": "makeup_artist",
+   "fieldtype": "Check",
+   "label": "Makeup Artist"
+  },
+  {
+   "default": "0",
+   "fieldname": "hairdresser",
+   "fieldtype": "Check",
+   "label": "Hairdresser"
+  },
+  {
+   "default": "0",
+   "fieldname": "model",
+   "fieldtype": "Check",
+   "label": "Model"
+  },
+  {
+   "default": "0",
+   "fieldname": "bridesmaid",
+   "fieldtype": "Check",
+   "label": "Bridesmaid"
+  },
+  {
+   "fieldname": "other",
+   "fieldtype": "Data",
+   "label": "Other"
+  },
+  {
+   "fieldname": "main_specialty_section",
+   "fieldtype": "Section Break",
+   "label": "Main Specialty"
+  },
+  {
+   "fieldname": "experience_in_the_field_in_years_section",
+   "fieldtype": "Section Break",
+   "label": "Experience in the field (in years)"
+  },
+  {
+   "default": "0",
+   "fieldname": "less_than_a_year",
+   "fieldtype": "Check",
+   "label": "Less than a year"
+  },
+  {
+   "default": "0",
+   "fieldname": "1_to_3_years",
+   "fieldtype": "Check",
+   "label": "1 to 3 years"
+  },
+  {
+   "default": "0",
+   "fieldname": "4_to_6_years",
+   "fieldtype": "Check",
+   "label": "4 to 6 years"
+  },
+  {
+   "default": "0",
+   "fieldname": "more_than_6_years",
+   "fieldtype": "Check",
+   "label": "More than 6 years"
+  },
+  {
+   "fieldname": "service_details_and_prices_tab",
+   "fieldtype": "Tab Break",
+   "label": "Service details and prices"
+  },
+  {
+   "description": " \"Example: Videographer, Casual Model..\" * More than one specialization can be added",
+   "fieldname": "subspecialty",
+   "fieldtype": "Data",
+   "label": "Subspecialty"
+  },
+  {
+   "fieldname": "what_is_the_average_price_for_your_service_section",
+   "fieldtype": "Section Break",
+   "label": "What is the average price for your service?"
+  },
+  {
+   "default": "0",
+   "fieldname": "less_than_500_sar",
+   "fieldtype": "Check",
+   "label": "Less than 500 SAR"
+  },
+  {
+   "default": "0",
+   "fieldname": "500_to_1000_sar",
+   "fieldtype": "Check",
+   "label": "500 to 1000 SAR"
+  },
+  {
+   "default": "0",
+   "fieldname": "1000_to_2000_sar",
+   "fieldtype": "Check",
+   "label": "1000 to 2000 SAR"
+  },
+  {
+   "default": "0",
+   "fieldname": "more_than_2000_sar",
+   "fieldtype": "Check",
+   "label": "More than 2000 SAR"
+  },
+  {
+   "fieldname": "other_service_price",
+   "fieldtype": "Data",
+   "label": "Other"
+  },
+  {
+   "fieldname": "do_prices_vary_based_on_client_type_personalbusiness_section",
+   "fieldtype": "Section Break",
+   "label": "Do prices vary based on client type (personal/business)?"
+  },
+  {
+   "default": "0",
+   "fieldname": "yes",
+   "fieldtype": "Check",
+   "label": "Yes"
+  },
+  {
+   "default": "0",
+   "fieldname": "no",
+   "fieldtype": "Check",
+   "label": "No"
+  },
+  {
+   "fieldname": "other_customer_type",
+   "fieldtype": "Data",
+   "label": "Other"
+  },
+  {
+   "fieldname": "do_you_deal_with_fixed_or_negotiable_prices_section",
+   "fieldtype": "Section Break",
+   "label": "Do you deal with fixed or negotiable prices?"
+  },
+  {
+   "default": "0",
+   "fieldname": "fixed_prices",
+   "fieldtype": "Check",
+   "label": "Fixed prices"
+  },
+  {
+   "default": "0",
+   "fieldname": "negotiable",
+   "fieldtype": "Check",
+   "label": "Negotiable"
+  },
+  {
+   "fieldname": "app_experience_tab",
+   "fieldtype": "Tab Break",
+   "label": "App Experience"
+  },
+  {
+   "fieldname": "what_features_do_you_value_most_in_the_app_section",
+   "fieldtype": "Section Break",
+   "label": "What features do you value most in the app?"
+  },
+  {
+   "default": "0",
+   "fieldname": "appointment_management",
+   "fieldtype": "Check",
+   "label": "Appointment Management"
+  },
+  {
+   "default": "0",
+   "fieldname": "order_management",
+   "fieldtype": "Check",
+   "label": "Order Management"
+  },
+  {
+   "default": "0",
+   "fieldname": "customer_communication",
+   "fieldtype": "Check",
+   "label": "Customer Communication"
+  },
+  {
+   "default": "0",
+   "fieldname": "view_portfolio",
+   "fieldtype": "Check",
+   "label": "View Portfolio"
+  },
+  {
+   "fieldname": "other_app_experiencec",
+   "fieldtype": "Data",
+   "label": "Other"
+  },
+  {
+   "fieldname": "what_features_do_you_find_lacking_or_need_improvement_section",
+   "fieldtype": "Section Break",
+   "label": "What features do you find lacking or need improvement?"
+  },
+  {
+   "fieldname": "need_to_improve",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "do_you_find_the_app_interface_easy_to_use_section",
+   "fieldtype": "Section Break",
+   "label": "Do you find the app interface easy to use?"
+  },
+  {
+   "default": "0",
+   "fieldname": "yes_east_to_use",
+   "fieldtype": "Check",
+   "label": "Yes"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_east_to_use",
+   "fieldtype": "Check",
+   "label": "No"
+  },
+  {
+   "fieldname": "what_did_you_like_most_about_the_app_section",
+   "fieldtype": "Section Break",
+   "label": "What did you like most about the app?"
+  },
+  {
+   "fieldname": "data_yebz",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "what_is_the_most_annoying_in_the_app_section",
+   "fieldtype": "Section Break",
+   "label": "What is the most annoying in the app?"
+  },
+  {
+   "fieldname": "most_annoying_in_app",
+   "fieldtype": "Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-30 15:29:16.626204",
+ "modified_by": "Administrator",
+ "module": "Art Zone",
+ "name": "Survey for Artists",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
