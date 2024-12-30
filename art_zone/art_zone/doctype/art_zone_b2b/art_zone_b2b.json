@@ -1,0 +1,158 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:{store_name}-{###}",
+ "creation": "2024-12-30 09:30:17.929813",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "bussiness_type",
+  "column_break_aqwy",
+  "store_name",
+  "section_break_dndh",
+  "contact_name",
+  "column_break_sylf",
+  "mobile_number",
+  "column_break_ufgs",
+  "email",
+  "section_break_pgda",
+  "city",
+  "column_break_juri",
+  "the_neighborhood",
+  "section_break_zpkb",
+  "location",
+  "section_break_ndwb",
+  "is_there_a_system",
+  "column_break_pccl",
+  "system_name",
+  "section_break_sabd",
+  "filled_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "bussiness_type",
+   "fieldtype": "Select",
+   "label": "Business Type",
+   "options": "\u0633\u062a\u0648\u062f\u064a\u0648 \u062a\u0635\u0648\u064a\u0631\n\u0635\u0627\u0644\u0648\u0646 \u062a\u062c\u0645\u064a\u0644"
+  },
+  {
+   "fieldname": "column_break_aqwy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "store_name",
+   "fieldtype": "Data",
+   "label": "Store name"
+  },
+  {
+   "fieldname": "section_break_dndh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contact_name",
+   "fieldtype": "Data",
+   "label": "Contact Name"
+  },
+  {
+   "fieldname": "column_break_sylf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "column_break_ufgs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "section_break_pgda",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "column_break_juri",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "the_neighborhood",
+   "fieldtype": "Data",
+   "label": "The Neighborhood"
+  },
+  {
+   "fieldname": "section_break_zpkb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "fieldname": "section_break_ndwb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_there_a_system",
+   "fieldtype": "Check",
+   "label": "Is there a system?"
+  },
+  {
+   "fieldname": "column_break_pccl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.is_there_a_system",
+   "fieldname": "system_name",
+   "fieldtype": "Data",
+   "label": "System Name"
+  },
+  {
+   "fieldname": "section_break_sabd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "filled_by",
+   "fieldtype": "Data",
+   "label": "Filled by"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-30 09:52:41.693259",
+ "modified_by": "Administrator",
+ "module": "Art Zone",
+ "name": "Art Zone B2B",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_views": 1
+}
