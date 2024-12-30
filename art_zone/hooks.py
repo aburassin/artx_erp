@@ -25,19 +25,27 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/art_zone/css/art_zone.css"
+# app_include_css = ["/assets/art_zone/css/website.bundle.css"]
 # app_include_js = "/assets/art_zone/js/art_zone.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/art_zone/css/art_zone.css"
+# web_include_css = ["/assets/art_zone/css/website.bundle.css"]
 # web_include_js = "/assets/art_zone/js/art_zone.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "art_zone/public/scss/website"
 
 # include js, css files in header of web form
-# webform_include_js = {"doctype": "public/js/doctype.js"}
-# webform_include_css = {"doctype": "public/css/doctype.css"}
+webform_include_js = {
+    "Survey for Artists": "public/js/survey_for_artists.js",
+    "Art Zone B2B": "public/js/art_zone_b2b.js",
+}
+
+webform_include_css = {
+    "Survey for Artists": "public/css/survey_for_artists.css",
+    "Art Zone B2B": "public/css/art_zone_b2b.css",
+}
+
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}

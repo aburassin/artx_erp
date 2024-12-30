@@ -1,0 +1,19 @@
+body {
+    font-family: 'Almarai', sans-serif;
+    direction: ltr;
+}
+
+.webform-title {
+    text-align: center;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+html[lang="ar"] body {
+    direction: rtl;
+    text-align: right;
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../../tmp/tmp-13672-LU9CUbJK9YiS/art_zone/art_zone/public/css/website.bundle.css"],
+  "sourcesContent": [".row, .form-section .section-body, .dialog-assignment-row {\n  display: block;\n  margin-right: -15px;\n  margin-left: -15px; \n}"],
+  "mappings": ";AAAA;AAAA;AAAA;AACE;AACA;AACA;AAAA;",
+  "names": []
+}
