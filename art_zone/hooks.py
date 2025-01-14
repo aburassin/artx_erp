@@ -254,13 +254,16 @@ after_install = ["art_zone.after_install.after_install"]
 
 
 # Custom Field
-# fixtures = [
-#     {
-#         "dt": "Custom Field", 
-#         "filters": []
-#     },
-#     {
-#         "dt": "Accounting Dimension",
-#         "filters": []
-#     },
-# ]
+fixtures = [
+    # {
+    #     "dt": "Custom Field", 
+    #     "filters": []
+    # },
+    # {
+    #     "dt": "Accounting Dimension",
+    #     "filters": []
+    # },
+    # {
+    #     "dt": "Project",
+    # }
+]

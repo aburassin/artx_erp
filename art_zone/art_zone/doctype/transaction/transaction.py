@@ -32,6 +32,7 @@ class Transaction(Document):
             frappe.throw("Referenced project not found.")
         project.estimated_costing = self.cost + self.company_fees
         project.status = "Completed"
+        project.accepted_transaction = self.name
         self.add_transaction_row_in_project(project)
         project.save()
 
@@ -102,16 +103,31 @@ class Transaction(Document):
         for project_item in ref_project.items:
             si_item = si.append("items", {})
             si_item.item_code = project_item.item
-            si_item.qty =  1
+            si_item.qty = 1
             si_item.rate = self.cost + self.company_fees
             si_item.amount = si_item.rate
             si_item.description = project_item.get("description", " ")
+
+        default_tax_template = frappe.get_value("Sales Taxes and Charges Template", {"is_default": 1}, "name")
+        if default_tax_template:
+            si.taxes_and_charges = default_tax_template
+
+            tax_template = frappe.get_doc("Sales Taxes and Charges Template", default_tax_template)
+            for tax in tax_template.taxes:
+                si_tax = si.append("taxes", {})
+                si_tax.charge_type = tax.charge_type
+                si_tax.account_head = tax.account_head
+                si_tax.description = tax.description
+                si_tax.rate = tax.rate
+                si_tax.tax_amount = tax.tax_amount
+                si_tax.base_tax_amount = tax.base_tax_amount
 
         si.save()
         frappe.db.commit()
 
         self.sales_invoice = si.name
         return si
+
 
     def delete_sales_invoice(self):
         if self.sales_invoice:
