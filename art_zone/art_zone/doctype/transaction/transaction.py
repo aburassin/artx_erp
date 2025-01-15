@@ -78,7 +78,7 @@ class Transaction(Document):
 
         pi.save()
         frappe.db.commit()
-
+        pi.submit()
         self.purchase_invoice = pi.name
         return pi
 
@@ -124,7 +124,7 @@ class Transaction(Document):
 
         si.save()
         frappe.db.commit()
-
+        si.submit()
         self.sales_invoice = si.name
         return si
 

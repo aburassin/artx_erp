@@ -6,34 +6,37 @@ def create_supplier(**kwargs):
     supplier_uid = kwargs.get("supplier_uid")
     supplier_type = kwargs.get("supplier_type") or "Individual"
 
-    # Validate that the required fields are provided
     if not supplier_name or not supplier_uid:
-        frappe.throw(_("Supplier name and supplier code are required"))
+        frappe.throw(_("Supplier name and supplier UID are required."))
 
-    # Check if the supplier already exists based on supplier_code
     existing_supplier = frappe.db.exists("Supplier", {"supplier_uid": supplier_uid})
-    if existing_supplier:
-        frappe.throw(_("Supplier with code '{0}' already exists").format(supplier_uid))
 
     try:
-        # Create a new Supplier
-        supplier = frappe.get_doc({
-            "doctype": "Supplier",
-            "supplier_name": supplier_name,
-            "supplier_uid": supplier_uid,
-            "supplier_type": supplier_type
-        })
-        supplier.insert()  
+        if existing_supplier:
+            supplier = frappe.get_doc("Supplier", existing_supplier)
+            supplier.supplier_name = supplier_name
+            supplier.supplier_type = supplier_type
+            supplier.save()
+        else:
+            supplier = frappe.get_doc({
+                "doctype": "Supplier",
+                "supplier_name": supplier_name,
+                "supplier_uid": supplier_uid,
+                "supplier_type": supplier_type
+            })
+            supplier.insert() 
+
+        frappe.db.commit() 
         return supplier
+
     except Exception as e:
-        frappe.throw(_("An error occurred while creating the supplier: {0}").format(str(e)))
+        frappe.throw(_("An error occurred while processing the supplier: {0}").format(str(e)))
 
 
 def toggle_supplier_status(**kwargs):
     supplier_name = kwargs.get("supplier_name")
     supplier_uid = kwargs.get("supplier_uid")
 
-    # Fetch the existing supplier based on supplier_uid
     try:
         supplier = frappe.get_doc("Supplier", supplier_name)
     except frappe.DoesNotExistError:
