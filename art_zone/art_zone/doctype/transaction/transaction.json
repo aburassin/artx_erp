@@ -21,8 +21,10 @@
   "amended_from",
   "reference_tab",
   "purchase_invoice",
+  "purchase_payment_entry",
   "column_break_huvb",
-  "sales_invoice"
+  "sales_invoice",
+  "sales_payment_entry"
  ],
  "fields": [
   {
@@ -117,6 +119,18 @@
    "label": "Purchase Invoice",
    "options": "Purchase Invoice",
    "read_only": 1
+  },
+  {
+   "fieldname": "purchase_payment_entry",
+   "fieldtype": "Link",
+   "label": "Purchase Payment Entry",
+   "options": "Payment Entry"
+  },
+  {
+   "fieldname": "sales_payment_entry",
+   "fieldtype": "Link",
+   "label": "Sales Payment Entry",
+   "options": "Payment Entry"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -127,7 +141,7 @@
    "link_fieldname": "accepted_transaction"
   }
  ],
- "modified": "2025-01-14 22:04:38.045038",
+ "modified": "2025-01-18 17:36:28.144449",
  "modified_by": "Administrator",
  "module": "Art Zone",
  "name": "Transaction",

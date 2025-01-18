@@ -47,6 +47,7 @@ class Transaction(Document):
             frappe.throw("Referenced project not found.")
         project.estimated_costing = 0.0
         project.status = "Open"
+        project.accepted_transaction = None
         self.remove_transaction_row_from_project(project)
         project.save()
 
