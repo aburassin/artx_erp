@@ -18,8 +18,12 @@ class Transaction(Document):
 
     def process_acceptance(self):
         self.update_project_status()
-        self.create_purchase_invoice()
-        self.create_sales_invoice()
+        purchase_invoice = self.create_purchase_invoice()
+        sales_invoice = self.create_sales_invoice()
+        
+        # Create Payment Entries
+        self.create_payment_entry_for_purchase_invoice(purchase_invoice)
+        self.create_payment_entry_for_sales_invoice(sales_invoice)
 
     def reverse_acceptance(self):
         self.reverse_project_status()
@@ -128,7 +132,6 @@ class Transaction(Document):
         self.sales_invoice = si.name
         return si
 
-
     def delete_sales_invoice(self):
         if self.sales_invoice:
             si = frappe.get_doc("Sales Invoice", self.sales_invoice)
@@ -142,3 +145,68 @@ class Transaction(Document):
         if not project:
             frappe.throw("Referenced project not found.")
         return project
+
+    def create_payment_entry_for_purchase_invoice(self, purchase_invoice):
+        payment_entry = frappe.new_doc("Payment Entry")
+        payment_entry.payment_type = "Pay"
+        payment_entry.party_type = "Supplier"
+        payment_entry.party = purchase_invoice.supplier
+        
+        payment_entry.paid_from = self.get_company_default_account("default_bank_account")
+        payment_entry.paid_to = self.get_company_default_account("default_payable_account")
+        
+        payment_entry.paid_amount = purchase_invoice.grand_total
+        payment_entry.received_amount = purchase_invoice.grand_total
+        payment_entry.reference_no = purchase_invoice.name
+        payment_entry.reference_date = now()
+        
+        payment_entry.append("references", {
+            "reference_doctype": "Purchase Invoice",
+            "reference_name": purchase_invoice.name,
+            "total_amount": purchase_invoice.grand_total,
+            "outstanding_amount": purchase_invoice.grand_total,
+            "allocated_amount": purchase_invoice.grand_total
+        })
+        
+        payment_entry.save()
+        frappe.db.commit()
+        payment_entry.submit()
+        self.purchase_payment_entry = payment_entry.name
+        return payment_entry
+    def create_payment_entry_for_sales_invoice(self, sales_invoice):
+        payment_entry = frappe.new_doc("Payment Entry")
+        payment_entry.payment_type = "Receive"
+        payment_entry.party_type = "Customer"
+        payment_entry.party = sales_invoice.customer
+        payment_entry.paid_from = self.get_company_default_account("default_receivable_account")
+        payment_entry.paid_to = self.get_company_default_account("default_bank_account")
+        payment_entry.paid_amount = sales_invoice.grand_total
+        payment_entry.received_amount = sales_invoice.grand_total
+        payment_entry.reference_no = sales_invoice.name
+        payment_entry.reference_date = now()
+        payment_entry.append("references", {
+            "reference_doctype": "Sales Invoice",
+            "reference_name": sales_invoice.name,
+            "total_amount": sales_invoice.grand_total,
+            "outstanding_amount": sales_invoice.grand_total,
+            "allocated_amount": sales_invoice.grand_total
+        })
+        payment_entry.save()
+        frappe.db.commit()
+        payment_entry.submit()
+        self.sales_payment_entry = payment_entry.name
+        return payment_entry
+
+    def get_company_default_account(self, account_type):
+        project = self.get_ref_project()
+        if not project:
+            frappe.throw("Referenced project not found.")
+        
+        company = project.company
+        if not company:
+            frappe.throw(f"Company not set for project {project.name}.")
+
+        account = frappe.get_value("Company", company, account_type)
+        if not account:
+            frappe.throw(f"Default {account_type} account not set for company {company}.")
+        return account
