@@ -27,6 +27,7 @@ class Transaction(Document):
 
     def reverse_acceptance(self):
         self.reverse_project_status()
+        self.reverse_payment_entries()
         self.delete_purchase_invoice()
         self.delete_sales_invoice()
 
@@ -210,3 +211,20 @@ class Transaction(Document):
         if not account:
             frappe.throw(f"Default {account_type} account not set for company {company}.")
         return account
+    
+    def reverse_payment_entries(self):
+        if self.purchase_payment_entry:
+            purchase_payment_entry = frappe.get_doc("Payment Entry", self.purchase_payment_entry)
+            if purchase_payment_entry.docstatus == 1:
+                purchase_payment_entry.cancel()
+            purchase_payment_entry.delete()
+            frappe.db.commit()
+            self.purchase_payment_entry = None 
+
+        if self.sales_payment_entry:
+            sales_payment_entry = frappe.get_doc("Payment Entry", self.sales_payment_entry)
+            if sales_payment_entry.docstatus == 1:
+                sales_payment_entry.cancel()
+            sales_payment_entry.delete()
+            frappe.db.commit()
+            self.sales_payment_entry = None 
